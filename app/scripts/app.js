@@ -14,6 +14,10 @@ function ($routeProvider) {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
+
+    /*
+     * settings routes
+     */
     .when('/settings', {
       templateUrl: 'views/settings.html',
       controller: 'SettingsCtrl'
