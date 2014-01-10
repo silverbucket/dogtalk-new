@@ -13,6 +13,9 @@ function($rootScope) {
       $rootScope.$on('$routeChangeSuccess', function() {
         element.addClass('hide');
       });
+      $rootScope.$on('$routeChangeError', function (event, current, previous, rejection) {
+        console.log('routeChangeError: ', rejection);
+      });
     }
   };
 }]).
