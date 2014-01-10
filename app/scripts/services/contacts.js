@@ -2,8 +2,22 @@
 
 angular.module('dogtalkApp.services.contacts', ['ngRemoteStorage']).
 
-factory('Contact', ['RS',
-function (RS) {
+value('ContactData', {
+  contacts: []
+}).
+
+run(['RS', 'ContactData',
+function (RS, ContactData) {
+  RS.on('contacts', 'change', function (data) {
+    console.log('CHANGE EVENT: ', data);
+  });
+  RS.on('contacts', 'conflict', function (data) {
+    console.log('CONFLICT EVENT: ', data);
+  });
+}]).
+
+factory('Contact', ['RS', 'ContactData', '$q',
+function (RS, ContactData, $q) {
   return {
     get: function (id) {
       return RS.call('contacts', 'get' [id]);
@@ -11,8 +25,14 @@ function (RS) {
     save: function (data) {
       return RS.call('contacts', 'save', [data]);
     },
-    query: function () {
-      return RS.call('contacts', 'getAll', []);
+    query: function (refresh) {
+      if (refresh) {
+        return RS.call('contacts', 'getAll', ['']);
+      } else {
+        var defer = $q.defer();
+        defer.resolve(ContactData.contacts);
+        return defer.promise;
+      }
     },
     remove: function (id) {
       return RS.call('contacts', 'remove', [id]);

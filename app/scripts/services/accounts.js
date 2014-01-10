@@ -2,8 +2,8 @@
 
 angular.module('dogtalkApp.services.accounts', ['ngRemoteStorage']).
 
-factory('Account', ['RS',
-function (RS) {
+factory('Account', ['RS', '$q',
+function (RS, $q) {
   return {
     get: function (id) {
       return RS.call('accounts', 'get' [id]);
@@ -11,7 +11,7 @@ function (RS) {
     save: function (data) {
       return RS.call('accounts', 'save', [data]);
     },
-    query: function () {
+    query: function (refresh) {
       return RS.call('accounts', 'getAll', ['']);
     },
     remove: function (id) {
