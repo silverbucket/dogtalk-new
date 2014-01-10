@@ -1,0 +1,16 @@
+.navbar-brand {
+  color: #222;
+}
+.dogtalk-icon {
+  display: inline-block;
+  background: url('/images/dogtalk-icon.svg') center left no-repeat;
+  width: 30px;
+  height: 22px;
+  background-size: 30px 22px;
+  float: left;
+  margin-top: -4px;
+}
+#remotestorage-widget {
+  position: fixed !important;
+  top: 3px !important;
+}
