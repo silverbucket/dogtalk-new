@@ -12,7 +12,7 @@ function (RS) {
       return RS.call('accounts', 'save', [data]);
     },
     query: function () {
-      return RS.call('accounts', 'getAll', []);
+      return RS.call('accounts', 'getAll', ['']);
     },
     remove: function (id) {
       return RS.call('accounts', 'remove', [id]);
