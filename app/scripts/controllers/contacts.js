@@ -2,12 +2,12 @@
 
 angular.module('dogtalkApp').
 
-controller('ListContactsCtrl', ['$scope', 'contacts',
+controller('ContactListCtrl', ['$scope', 'contacts',
 function ($scope, contacts) {
   $scope.contacts = contacts;
 }]).
 
-controller('ViewContactCtrl', ['$scope', '$location', 'contact',
+controller('ContactViewCtrl', ['$scope', '$location', 'contact',
 function ($scope, $location, contact) {
   $scope.contact = contact;
 
@@ -17,7 +17,7 @@ function ($scope, $location, contact) {
 
 }]).
 
-controller('EditContactCtrl', ['$scope', '$location', 'contact', 'Contact',
+controller('ContactEditCtrl', ['$scope', '$location', 'contact', 'Contact',
 function ($scope, $location, contact, Contact) {
   $scope.contact = contact;
 
@@ -38,7 +38,7 @@ function ($scope, $location, contact, Contact) {
   };
 }]).
 
-controller('NewContactCtrl', ['$scope', '$location', 'Contact',
+controller('ContactNewCtrl', ['$scope', '$location', 'Contact',
 function ($scope, $location, Contact) {
   $scope.contact = new Contact();
 
