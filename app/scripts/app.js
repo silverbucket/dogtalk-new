@@ -7,6 +7,18 @@ angular.module('dogtalkApp', [
   'dogtalkApp.services.accounts'
 ]).
 
+/**
+ * remotestorage config
+ */
+run(['RemoteStorageConfig',
+function (RScfg) {
+  RScfg.modules = [
+    ['sockethub', 'rw', {'cache': true, 'public': false}],
+    ['contacts', 'rw', {'cache': true, 'public': false}],
+    ['messages', 'rw', {'cache': true, 'public': false}]
+  ];
+}]).
+
 config(['$routeProvider',
 function ($routeProvider) {
   $routeProvider
@@ -30,7 +42,7 @@ function ($routeProvider) {
       templateUrl: 'views/accounts/list.html',
       controller: 'AccountListCtrl',
       resolve: {
-        contacts: ['MultipleAccountLoader', function (MultipleAccountLoader) {
+        accounts: ['MultipleAccountLoader', function (MultipleAccountLoader) {
           return MultipleAccountLoader();
         }]
       }
