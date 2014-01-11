@@ -3,7 +3,74 @@
 angular.module('dogtalkApp.services.contacts', ['ngRemoteStorage']).
 
 value('ContactData', {
-  contacts: []
+  contacts: [
+    {
+      'fn': 'Jiri Novak',
+      'familyName': 'Novak',
+      'givenName': 'Jiri',
+      'additionalName': '',
+      'honorificPrefix': '',
+      'honorificSuffix': '',
+      'nickname': 'jiridog',
+      'url': 'google.com',
+      'email': [
+        {
+          'type': 'home',
+          'value': 'jiridog@hotmail.com'
+        },
+        {
+          'type': 'work',
+          'value': 'jnovak@killstupids.com'
+        }
+      ],
+      'tels': [],
+      'adr': '',
+      'geo': '',
+      'tz': '',
+      'photo': '',
+      'logo': '',
+      'sound': '',
+      'bday': '',
+      'title': '',
+      'role': '',
+      'org': {
+        'organizationName': '',
+        'organizationUnit': ''
+      },
+      'impp': ''
+    },
+    {
+      'fn': 'Bobby McFerrin',
+      'familyName': 'McFerrin',
+      'givenName': 'Bobby',
+      'additionalName': '',
+      'honorificPrefix': '',
+      'honorificSuffix': '',
+      'nickname': 'bmf',
+      'url': 'bobbymcferrin.com',
+      'email': [
+        {
+          'type': 'work',
+          'value': 'bobby@bobbymcferrrin.com'
+        }
+      ],
+      'tels': [],
+      'adr': '',
+      'geo': '',
+      'tz': '',
+      'photo': '',
+      'logo': '',
+      'sound': '',
+      'bday': '',
+      'title': '',
+      'role': '',
+      'org': {
+        'organizationName': '',
+        'organizationUnit': ''
+      },
+      'impp': ''
+    }
+  ]
 }).
 
 run(['RS', 'ContactData',
