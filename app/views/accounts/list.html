@@ -1,20 +1,17 @@
 <section class="page">
-  <div ng-controller="AccountListCtrl">
+  <div>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <button class="btn btn-primary btn-lg">Add account</button>
         </div>
       </div>
-
+      <div ng-repeat="a in accounts | orderBy: user">
+        <div class="row"><div class="col-md-12">&nbsp; <br /></div></div>
         <div class="row">
-        <div class="col-md-12">
-          <p>account@jabber.org</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <p>irc.freenode.net</p>
+          <div class="col-md-12">
+            <button class="btn btn-default btn-lg">{{ a.type }} - {{ a.user }} - {{ a.host }}</button>
+          </div>
         </div>
       </div>
     </div>

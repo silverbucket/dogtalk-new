@@ -1,20 +1,17 @@
 <section class="page">
-  <div ng-controller="AccountListCtrl">
+  <div>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <button class="btn btn-primary btn-lg">Add contact</button>
         </div>
       </div>
-
+      <div ng-repeat="c in contacts | orderBy: fn">
+        <div class="row"><div class="col-md-12">&nbsp; <br /></div></div>
         <div class="row">
-        <div class="col-md-12">
-          <p>Dude Man</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <p>Burt Simmons</p>
+          <div class="col-md-12">
+            <button class="btn btn-default btn-lg">{{ c.fn }} - {{ c.nickname }}</button>
+          </div>
         </div>
       </div>
     </div>
