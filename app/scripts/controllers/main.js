@@ -1,10 +1,14 @@
 'use strict';
 
-angular.module('dogtalkApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+angular.module('dogtalkApp').
+controller('MainCtrl', ['$scope', 'contacts', 'accounts', 'messages',
+function ($scope, contacts, accounts, messages) {
+  $scope.awesomeThings = [
+    'HTML5 Boilerplate',
+    'AngularJS',
+    'Karma'
+  ];
+  $scope.contacts = contacts;
+  $scope.accounts = accounts;
+  $scope.messages = messages;
+}]);
