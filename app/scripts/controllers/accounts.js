@@ -4,7 +4,6 @@ angular.module('dogtalkApp').
 
 controller('AccountListCtrl', ['$scope', 'accounts',
 function ($scope, accounts) {
-console.log('YARG!');
   $scope.accounts = accounts;
 }]).
 
