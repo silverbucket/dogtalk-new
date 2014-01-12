@@ -5,7 +5,8 @@ angular.module('dogtalkApp', [
   'ngRemoteStorage',
   'dogtalkApp.services.contacts',
   'dogtalkApp.services.accounts',
-  'dogtalkApp.services.messages'
+  'dogtalkApp.services.messages',
+  'dogtalkApp.directives.recentConversations'
 ]).
 
 
@@ -53,6 +54,15 @@ function ($routeProvider) {
 
 
     /*
+     * chat routes
+     */
+    .when('/c/:contactId', {
+      templateUrl: 'views/chat.html',
+      controller: 'ChatCtrl'
+    })
+
+
+    /*
      * account routes
      */
     .when('/accounts/list', {
@@ -96,7 +106,7 @@ function ($routeProvider) {
       controller: 'ContactListCtrl',
       resolve: {
         contacts: ['MultipleContactLoader', function (MultipleContactLoader) {
-          return MultipleContactLoader();
+          return MultipleContactLoader(true);
         }]
       }
     })

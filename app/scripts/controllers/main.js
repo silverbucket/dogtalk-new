@@ -11,4 +11,5 @@ function ($scope, contacts, accounts, messages) {
   $scope.contacts = contacts;
   $scope.accounts = accounts;
   $scope.messages = messages;
+console.log('--CONTAcTS: ', $scope.contacts);
 }]);
