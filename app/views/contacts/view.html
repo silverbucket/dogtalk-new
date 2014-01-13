@@ -1,0 +1,15 @@
+<section class="page">
+  <div ng-repeat="c in contacts" class="col-6 col-sm-6 col-lg-4">
+    <h2>{{ c.fn }}</h2>
+    <div ng-repeat="e in c.email" class="row">
+      <div class="col-3 col-sm-3 col-lg-2">Email ({{c.type}}): </div>
+      <div class="col-3 col-sm-3 col-lg-2">{{ c.value }}}</div>
+    </div>
+
+    <div ng-repeat="e in c.impp" class="row">
+      <div class="col-3 col-sm-3 col-lg-2">IM ({{c.type}}): </div>
+      <div class="col-3 col-sm-3 col-lg-2">{{ c.value }}}</div>
+    </div>
+
+  </div>
+</section>
