@@ -43,7 +43,6 @@ function ($routeProvider) {
     })
 
 
-
     /*
      * settings routes
      */
@@ -132,6 +131,7 @@ function ($routeProvider) {
       templateUrl: 'views/contacts/edit.html',
       controller: 'ContactNewCtrl'
     })
+
 
     .otherwise({
       redirectTo: '/'

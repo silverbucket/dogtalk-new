@@ -10,8 +10,5 @@ function ($rootScope) {
       messages: '='
     },
     templateUrl: '/views/recent-conversations.html'
-    // link: function(scope, element, attrs) {
-    //   console.log('---!!!', scope.contacts);
-    // }
   };
 }]);
