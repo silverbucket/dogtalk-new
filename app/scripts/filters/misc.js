@@ -40,10 +40,7 @@ filter('filterObject', function () {
     angular.forEach(items, function (item) {
       if ((!val) ||
           (item[prop].toLowerCase().indexOf(val.toLowerCase()) >= 0)) {
-        console.log('YES '+val);
         filtered.push(item);
-      } else {
-        console.log('NO: '+item.fn+ ': '+item[prop].indexOf(val));
       }
     });
 
