@@ -3,8 +3,8 @@
 angular.module('dogtalkApp.services.contacts', ['ngRemoteStorage']).
 
 value('ContactData', {
-  contacts: [
-    {
+  contacts: {
+    '123456': {
       'id': '123456',
       'fn': 'Jiri Novak',
       'familyName': 'Novak',
@@ -49,7 +49,8 @@ value('ContactData', {
         }
       ]
     },
-    {
+
+    '654321': {
       'id': '654321',
       'fn': 'Bobby McFerrin',
       'familyName': 'McFerrin',
@@ -90,7 +91,7 @@ value('ContactData', {
         }
       ]
     }
-  ]
+  }
 }).
 
 run(['RS', 'ContactData',
@@ -107,19 +108,38 @@ factory('Contact', ['RS', 'ContactData', '$q',
 function (RS, ContactData, $q) {
   return {
     get: function (id) {
-      return RS.call('contacts', 'get', [id]);
+      var defer = $q.defer();
+      if (typeof ContactData.contacts[id] === 'object') {
+        defer.resolve(ContactData.contacts[id]);
+      } else {
+        RS.call('contacts', 'get', [id]).then(function (contact) {
+          ContactData.contacts[contact.id] = contact;
+          defer.resolve(contact);
+        }, function (e) {
+          defer.reject(e);
+        });
+      }
+      return defer.promise;
     },
     save: function (data) {
+      ContactData.contacts[data.id] = data;
       return RS.call('contacts', 'save', [data]);
     },
     query: function (refresh) {
+      var defer = $q.defer();
       if (refresh) {
-        return RS.call('contacts', 'getAll', ['']);
+        RS.call('contacts', 'get', [id]).then(function (contactArray) {
+          for (var i = contactArray.length - 1; i >= 0; i--) {
+            ContactData.contacts[contactArray[i].id] = contactArray[i];
+          }
+          defer.resolve(ContactData.contacts);
+        }, function (e) {
+          defer.reject(e);
+        });
       } else {
-        var defer = $q.defer();
         defer.resolve(ContactData.contacts);
-        return defer.promise;
       }
+      return defer.promise;
     },
     remove: function (id) {
       return RS.call('contacts', 'remove', [id]);

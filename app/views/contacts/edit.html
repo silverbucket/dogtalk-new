@@ -1,11 +1,22 @@
-<section class="page">
-  <div class="btn-group">
-    <button type="button" class="btn btn-default">
-      <img src="images/xmpp-logo.png" alt="XMPP" height="70" />
-    </button>
-    <button type="button" class="btn btn-default">
-      <img src="images/irc-logo.png" alt="XMPP" height="70" />
-    </button>
-    <button type="button" class="btn btn-default"><p></p></button>
-  </div>
-</section>
+<div class="col-12 col-sm-12 col-lg-8">
+  <form class="form-horizontal">
+    <div class="row">
+      <div class="col-6 col-sm-6 col-lg-4" style="float: left;">
+        <input value="{{contact.fn}}"></input>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-4" style="float: right;">
+        <a href="#/contacts/view/{{contact.id}}" class="btn btn-primary bt-lg">Save</a>
+      </div>
+    </div>
+
+    <div ng-repeat="e in contact.email" class="row">
+      <div class="col-6 col-sm-6 col-lg-4">Email ({{e.type}}): </div>
+      <div class="col-6 col-sm-6 col-lg-4"><input value="{{ e.value }}"></input></div>
+    </div>
+
+    <div ng-repeat="i in contact.impp" class="row">
+      <div class="col-6 col-sm-6 col-lg-4">IM ({{i.type}}): </div>
+      <div class="col-6 col-sm-6 col-lg-4"><input value="{{ i.value }}"></input></div>
+    </div>
+  </form>
+</div>

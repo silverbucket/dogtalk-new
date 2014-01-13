@@ -1,15 +1,21 @@
-<section class="page">
-  <div ng-repeat="c in contacts" class="col-6 col-sm-6 col-lg-4">
-    <h2>{{ c.fn }}</h2>
-    <div ng-repeat="e in c.email" class="row">
-      <div class="col-3 col-sm-3 col-lg-2">Email ({{c.type}}): </div>
-      <div class="col-3 col-sm-3 col-lg-2">{{ c.value }}}</div>
-    </div>
+<div class="col-12 col-sm-12 col-lg-8">
 
-    <div ng-repeat="e in c.impp" class="row">
-      <div class="col-3 col-sm-3 col-lg-2">IM ({{c.type}}): </div>
-      <div class="col-3 col-sm-3 col-lg-2">{{ c.value }}}</div>
+  <div class="row">
+    <div class="col-6 col-sm-6 col-lg-4" style="float: left;">
+      <h2>{{contact.fn}}</h2>
     </div>
-
+    <div class="col-6 col-sm-6 col-lg-4" style="float: right;">
+      <a href="#/contacts/edit/{{contact.id}}" class="btn btn-default bt-lg">Edit</a>
+    </div>
   </div>
-</section>
+
+  <div ng-repeat="e in contact.email" class="row">
+    <div class="col-6 col-sm-6 col-lg-4">Email ({{e.type}}): </div>
+    <div class="col-6 col-sm-6 col-lg-4">{{ e.value }}</div>
+  </div>
+
+  <div ng-repeat="i in contact.impp" class="row">
+    <div class="col-6 col-sm-6 col-lg-4">IM ({{i.type}}): </div>
+    <div class="col-6 col-sm-6 col-lg-4">{{ i.value }}</div>
+  </div>
+</div>
