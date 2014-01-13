@@ -78,7 +78,7 @@ function ($routeProvider) {
       templateUrl: 'views/accounts/edit.html',
       controller: 'AccountEditCtrl',
       resolve: {
-        accounts: ['AccountLoader', function (AccountLoader) {
+        account: ['AccountLoader', function (AccountLoader) {
           return AccountLoader();
         }]
       }
@@ -87,7 +87,7 @@ function ($routeProvider) {
       templateUrl: 'views/accounts/view.html',
       controller: 'AccountViewCtrl',
       resolve: {
-        accounts: ['AccountLoader', function (AccountLoader) {
+        account: ['AccountLoader', function (AccountLoader) {
           return AccountLoader();
         }]
       }
@@ -114,7 +114,7 @@ function ($routeProvider) {
       templateUrl: 'views/contacts/edit.html',
       controller: 'ContactEditCtrl',
       resolve: {
-        contacts: ['ContactLoader', function (ContactLoader) {
+        contact: ['ContactLoader', function (ContactLoader) {
           return ContactLoader();
         }]
       }
@@ -123,7 +123,7 @@ function ($routeProvider) {
       templateUrl: 'views/contacts/view.html',
       controller: 'ContactViewCtrl',
       resolve: {
-        contacts: ['ContactLoader', function (ContactLoader) {
+        contact: ['ContactLoader', function (ContactLoader) {
           return ContactLoader();
         }]
       }
