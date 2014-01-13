@@ -10,14 +10,14 @@
     <div class="col-xs-6 col-sm-3" >
       <form role="form" class="form-horizontal">
         <div class="form-group">
-            <input type="text" id="contactSearch" class="form-control" placeholder="Search" />
+            <input type="text" id="contactSearch" ng-model="searchText" class="form-control" placeholder="Search" />
         </div>
       </form>
     </div>
 
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
       <div class="list-group">
-        <a ng-repeat="c in contacts | orderBy: messageCount" href="#" class="list-group-item" ng-class="{active: $index === 0}">{{ c.fn }}</a>
+        <a ng-repeat="c in contacts | filter:searchText | orderBy: messageCount" href="#" class="list-group-item" ng-class="{active: $index === 0}">{{ c.fn }}</a>
       </div>
     </div><!--/span-->
   </div><!--/row-->
