@@ -1,17 +1,19 @@
-<div ng-repeat="(id, c) in contacts | filterObject:'fn':search.text"
-     ng-class="{'jumbotron': $index == 0}"
-     ng-show="$index == 0">
+<div ng-repeat="(id, c) in contacts | filterObject:'fn':data.searchText"
+     ng-class="{'jumbotron': c.id == data.selected}"
+     ng-show="c.id == data.selected">
 
   <h2>{{ c.fn }}</h2>
   <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+  <p><a style="padding:6px 12px !important;font-size:14px !important;" class="btn btn-default" href="#" role="button">View conversation &raquo;</a></p>
 </div>
 
 <div class="row">
-  <div ng-repeat="c in contacts | filterObject:'fn':search.text"
+  <div ng-repeat="c in contacts | filterObject:'fn':data.searchText"
        class="col-6 col-sm-6 col-lg-4"
-       ng-show="$index != 0">
+       ng-show="c.id != data.selected">
     <h2>{{ c.fn }}</h2>
-    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    <p ng-repeat="m in messages | filter:c.impp"
+       ng-show="$index == 0">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+    <p><a class="btn btn-default" href="#" role="button">View conversation &raquo;</a></p>
   </div><!--/span-->
 </div>

@@ -27,8 +27,28 @@ config(['$routeProvider',
 function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'views/main.html',
-      controller: 'MainCtrl',
+      templateUrl: 'views/dash.html',
+      controller: 'DashCtrl',
+      resolve: {
+        messages: ['MultipleMessageLoader', function (MultipleMessageLoader) {
+          return MultipleMessageLoader();
+        }],
+        accounts: ['MultipleAccountLoader', function (MultipleAccountLoader) {
+          return MultipleAccountLoader();
+        }],
+        contacts: ['MultipleContactLoader', function (MultipleContactLoader) {
+          return MultipleContactLoader();
+        }]
+      }
+    })
+
+
+    /*
+     * dashboard selections
+     */
+    .when('/dash/:contactId', {
+      templateUrl: 'views/dash.html',
+      controller: 'DashCtrl',
       resolve: {
         messages: ['MultipleMessageLoader', function (MultipleMessageLoader) {
           return MultipleMessageLoader();
@@ -50,6 +70,7 @@ function ($routeProvider) {
       templateUrl: 'views/settings.html',
       controller: 'SettingsCtrl'
     })
+
 
 
     /*
