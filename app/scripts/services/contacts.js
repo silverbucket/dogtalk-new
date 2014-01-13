@@ -5,6 +5,7 @@ angular.module('dogtalkApp.services.contacts', ['ngRemoteStorage']).
 value('ContactData', {
   contacts: [
     {
+      'id': '123456',
       'fn': 'Jiri Novak',
       'familyName': 'Novak',
       'givenName': 'Jiri',
@@ -37,9 +38,19 @@ value('ContactData', {
         'organizationName': '',
         'organizationUnit': ''
       },
-      'impp': ''
+      'impp': [
+        {
+          'type': 'xmpp',
+          'value': 'jiridog@hotmail.com'
+        },
+        {
+          'type': 'xmpp',
+          'value': 'jnovak@killstupids.com'
+        }
+      ]
     },
     {
+      'id': '654321',
       'fn': 'Bobby McFerrin',
       'familyName': 'McFerrin',
       'givenName': 'Bobby',
@@ -51,7 +62,7 @@ value('ContactData', {
       'email': [
         {
           'type': 'work',
-          'value': 'bobby@bobbymcferrrin.com'
+          'value': 'bobby@bobbymcferrin.com'
         }
       ],
       'tels': [],
@@ -68,7 +79,16 @@ value('ContactData', {
         'organizationName': '',
         'organizationUnit': ''
       },
-      'impp': ''
+      'impp': [
+        {
+          'type': 'xmpp',
+          'value': 'bobby@bobbymcferrin.com'
+        },
+        {
+          'type': 'irc',
+          'value': 'bmf'
+        }
+      ]
     }
   ]
 }).
@@ -87,7 +107,7 @@ factory('Contact', ['RS', 'ContactData', '$q',
 function (RS, ContactData, $q) {
   return {
     get: function (id) {
-      return RS.call('contacts', 'get' [id]);
+      return RS.call('contacts', 'get', [id]);
     },
     save: function (data) {
       return RS.call('contacts', 'save', [data]);

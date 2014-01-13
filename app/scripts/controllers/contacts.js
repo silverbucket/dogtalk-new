@@ -10,7 +10,6 @@ function ($scope, contacts) {
 controller('ContactViewCtrl', ['$scope', '$location', 'contact',
 function ($scope, $location, contact) {
   $scope.contact = contact;
-
   $scope.edit = function () {
     $location.path('/contact/edit/' + contact.id);
   };

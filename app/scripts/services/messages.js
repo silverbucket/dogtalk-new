@@ -101,7 +101,7 @@ factory('Message', ['RS', '$q', 'MessageData',
 function (RS, $q, MessageData) {
   return {
     get: function (id) {
-      return RS.call('messages', 'get' [id]);
+      return RS.call('messages', 'get', [id]);
     },
     save: function (data) {
       return RS.call('messages', 'save', [data]);
