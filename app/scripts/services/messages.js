@@ -69,6 +69,30 @@ value('MessageData', {
       'from': 'rmsw',
       'to': 'lilac',
       'text': ':D',
+    },
+    {
+      'timestamp': 12345678908,
+      'from': 'jiridog@hotmail.com',
+      'to': 'lilac',
+      'text': 'watermelon 100% for real',
+    },
+    {
+      'timestamp': 12345678918,
+      'from': 'jnovak@killstupids.com',
+      'to': 'rmsw@example.in',
+      'text': 'Mr. Watermelon will arrive at 100%',
+    },
+    {
+      'timestamp': 12344678908,
+      'from': 'lilac@hotmail.com',
+      'to': 'jiridog@hotmail.com',
+      'text': 'true dat',
+    },
+    {
+      'timestamp': 12345678908,
+      'from': 'rmsw@example.in',
+      'to': 'jnovak@killstupids.com',
+      'text': 'acceptable!',
     }
   ]
 }).
