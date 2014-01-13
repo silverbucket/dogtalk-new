@@ -1,4 +1,4 @@
-<div ng-repeat="(id, c) in contacts"
+<div ng-repeat="(id, c) in contacts | filterObject:'fn':search.text"
      ng-class="{'jumbotron': $index == 0}"
      ng-show="$index == 0">
 
@@ -7,7 +7,7 @@
 </div>
 
 <div class="row">
-  <div ng-repeat="c in contacts"
+  <div ng-repeat="c in contacts | filterObject:'fn':search.text"
        class="col-6 col-sm-6 col-lg-4"
        ng-show="$index != 0">
     <h2>{{ c.fn }}</h2>

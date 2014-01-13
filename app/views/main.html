@@ -4,20 +4,20 @@
       <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p>
-      <div recent-conversations contacts="contacts" messages="messages"></div>
+      <div recent-conversations contacts="contacts" messages="messages" search="search"></div>
     </div><!--/span-->
 
     <div class="col-xs-6 col-sm-3" >
       <form role="form" class="form-horizontal">
         <div class="form-group">
-          <input type="text" id="contactSearch" ng-model="searchText" class="form-control" placeholder="Search" />
+          <input type="text" id="contactSearch" ng-model="search.text" class="form-control" placeholder="Search" />
         </div>
       </form>
     </div>
 
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
       <div class="list-group">
-        <a ng-repeat="(id, c) in contacts | filterObject:'fn':searchText:true"
+        <a ng-repeat="(id, c) in contacts | filterObject:'fn':search.text"
            ng-class="{active: $index == 0}"
            href="#" class="list-group-item">{{ c.fn }}</a>
       </div>

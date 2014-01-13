@@ -8,6 +8,7 @@ function ($scope, contacts, accounts, messages) {
     'AngularJS',
     'Karma'
   ];
+  $scope.search = {text: undefined};
   $scope.contacts = contacts;
   $scope.accounts = accounts;
   $scope.messages = messages;

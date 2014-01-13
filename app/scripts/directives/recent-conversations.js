@@ -7,7 +7,8 @@ function ($rootScope) {
   return {
     scope: {
       contacts: '=',
-      messages: '='
+      messages: '=',
+      search: '='
     },
     templateUrl: '/views/recent-conversations.html'
   };
