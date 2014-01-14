@@ -74,6 +74,9 @@ function ($routeProvider) {
         contact: ['ContactLoader', function (ContactLoader) {
           return ContactLoader();
         }],
+        contacts: ['MultipleContactLoader', function (MultipleContactLoader) {
+          return MultipleContactLoader();
+        }],
         messages: ['MultipleMessageLoader', function (MultipleMessageLoader) {
           return MultipleMessageLoader();
         }],

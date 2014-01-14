@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('dogtalkApp').
-controller('ChatCtrl', ['$scope', '$route', '$document', '$location', 'messages', 'accounts', 'contact',
-function ($scope, $route, $document, $location, messages, accounts, contact) {
+controller('ChatCtrl', ['$scope', '$route', '$document', '$location', 'messages', 'accounts', 'contacts', 'contact',
+function ($scope, $route, $document, $location, messages, accounts, contacts, contact) {
 
   // $scope.data = {
   //   selected: $route.current.params.contactId || defaultId,
@@ -10,6 +10,7 @@ function ($scope, $route, $document, $location, messages, accounts, contact) {
   // };
   //
   $scope.contact = contact;
+  $scope.contacts = contacts;
   $scope.accounts = accounts;
   $scope.messages = messages;
 

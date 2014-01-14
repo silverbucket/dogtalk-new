@@ -4,6 +4,55 @@ angular.module('dogtalkApp.services.contacts', ['ngRemoteStorage']).
 
 value('ContactData', {
   contacts: {
+    '901923': {
+      'id': '901923',
+      'fn': 'Bob Sagget',
+      'familyName': 'Sagget',
+      'givenName': 'Bob',
+      'additionalName': '',
+      'honorificPrefix': '',
+      'honorificSuffix': '',
+      'nickname': 'aristocrat',
+      'url': 'google.com',
+      'email': [
+        {
+          'type': 'home',
+          'value': 'aristocrate@hotmail.com'
+        },
+        {
+          'type': 'work',
+          'value': 'aristocrat@peopleofthefunny.com'
+        }
+      ],
+      'tels': [],
+      'adr': '',
+      'geo': '',
+      'tz': '',
+      'photo': '',
+      'logo': '',
+      'sound': '',
+      'bday': '',
+      'title': '',
+      'role': '',
+      'org': {
+        'organizationName': '',
+        'organizationUnit': ''
+      },
+      'impp': [
+        {
+          'type': 'xmpp',
+          'value': 'aristocrat@hotmail.com'
+        },
+        {
+          'type': 'xmpp',
+          'value': 'aristocrat@killstupids.com'
+        },
+        {
+          'type': 'irc',
+          'value': 'bobsagget'
+        }
+      ]
+    },
     '123456': {
       'id': '123456',
       'fn': 'Jiri Novak',
