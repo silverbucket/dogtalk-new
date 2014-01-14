@@ -24,3 +24,12 @@ body { padding-top: 70px !important; }
 .from-me {
   background-color: #aaeeee;
 }
+.chat-title {
+  display: block;
+  border-bottom: 2px solid #dedede;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+.chat-title h2 {
+  padding: 0px !important;
+}

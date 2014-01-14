@@ -9,7 +9,6 @@ function ($scope, contacts, accounts, messages, $route, $document, $location) {
     'Karma'
   ];
 
-
   $scope.data = {
     selected: undefined,
     searchText: undefined

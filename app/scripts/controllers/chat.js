@@ -4,18 +4,13 @@ angular.module('dogtalkApp').
 controller('ChatCtrl', ['$scope', '$route', '$document', '$location', 'messages', 'accounts', 'contacts', 'contact',
 function ($scope, $route, $document, $location, messages, accounts, contacts, contact) {
 
-  // $scope.data = {
-  //   selected: $route.current.params.contactId || defaultId,
-  //   searchText: undefined
-  // };
-  //
   $scope.contact = contact;
   $scope.contacts = contacts;
   $scope.accounts = accounts;
   $scope.messages = messages;
 
   $scope.data = {
-    selected: $route.current.params.contactId || defaultId,
+    selected: undefined,
     searchText: undefined
   };
 
