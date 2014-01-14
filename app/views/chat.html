@@ -4,8 +4,14 @@
       <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p>
-      <div recent-conversations contacts="contacts" messages="messages" data="data"></div>
-    </div><!--/span-->
+
+      <div ng-repeat="m in messages" class="row">
+        <blockquote ng-class="{'from-me': isMe(m.from)}">
+          <p>{{m.text}}</p>
+          <small ng-class="{'pull-right': !isMe(m.from)}">{{m.from}}</small>
+        </blockquote>
+      </div>
+    </div>
 
     <div top-contact-list contacts="contacts" data="data"></div>
   </div><!--/row-->

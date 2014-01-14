@@ -128,7 +128,7 @@ function (RS, ContactData, $q) {
     query: function (refresh) {
       var defer = $q.defer();
       if (refresh) {
-        RS.call('contacts', 'get', [id]).then(function (contactArray) {
+        RS.call('contacts', 'getAll', ['']).then(function (contactArray) {
           for (var i = contactArray.length - 1; i >= 0; i--) {
             ContactData.contacts[contactArray[i].id] = contactArray[i];
           }

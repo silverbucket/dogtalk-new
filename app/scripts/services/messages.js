@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('dogtalkApp.services.messages', ['ngRemoteStorage']).
+angular.module('dogtalkApp.services.messages', [
+  'ngRemoteStorage',
+  'dogtalkApp.services.contacts',
+  'dogtalkApp.services.accounts'
+]).
 
 value('MessageData', {
   messages: [
@@ -15,6 +19,12 @@ value('MessageData', {
       'from': 'bobby@bobbymcferrin.com',
       'to': 'lilac@hotmail.com',
       'text': 'foo bar says baz bot',
+    },
+    {
+      'timestamp': 12345678901,
+      'from': 'lilac@hotmail.com',
+      'to': 'bobby@bobbymcferrin.com',
+      'text': 'thats right, i forgot about that, thanks for reminding me.',
     },
     {
       'timestamp': 12345678905,
@@ -97,8 +107,44 @@ value('MessageData', {
   ]
 }).
 
-factory('Message', ['RS', '$q', 'MessageData',
-function (RS, $q, MessageData) {
+factory('Message', ['RS', '$q', 'MessageData', '$route', 'ContactLoader', 'MultipleAccountLoader',
+function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
+
+  function __filter (messages) {
+    var defer = $q.defer();
+    var m = [];
+    if ($route.current.params.contactId) {
+      var accounts;
+      MultipleAccountLoader().then(function (a) {
+        // users accounts
+        accounts = [];
+        for (var i = a.length -1; i >= 0; i--) {
+          accounts.push(a[i].user);
+        }
+        return ContactLoader();
+      }).then(function (contact) {
+        // targets list of IDs
+        var tmp = contact.email.concat(contact.impp);
+        var chatIDs = [];
+        for (var i = tmp.length -1; i >= 0; i--) {
+          chatIDs.push(tmp[i].value);
+        }
+
+        for (i = messages.length -1; i >= 0; i--) {
+          if ((chatIDs.indexOf(messages[i].from) > -1) ||
+              ((chatIDs.indexOf(messages[i].to) > -1) &&
+               (accounts.indexOf(messages[i].from) > -1))) {
+            m.push(messages[i]);
+          }
+        }
+        defer.resolve(m);
+      });
+    } else {
+      defer.resolve(messages);
+    }
+    return defer.promise;
+  }
+
   return {
     get: function (id) {
       return RS.call('messages', 'get', [id]);
@@ -107,13 +153,20 @@ function (RS, $q, MessageData) {
       return RS.call('messages', 'save', [data]);
     },
     query: function (refresh) {
+      var defer = $q.defer();
       if (refresh) {
-        return RS.call('messages', 'getAll', ['']);
+        RS.call('messages', 'getAll', ['']).then(function (messages) {
+          MessageData.messages = messages;
+          return __filter(messages);
+        }).then(function (m) {
+          defer.resolve(m);
+        }, defer.reject);
       } else {
-        var defer = $q.defer();
-        defer.resolve(MessageData.messages);
-        return defer.promise;
+        __filter(MessageData.messages).then(function (m) {
+          defer.resolve(m);
+        });
       }
+      return defer.promise;
     },
     remove: function (id) {
       return RS.call('messages', 'remove', [id]);

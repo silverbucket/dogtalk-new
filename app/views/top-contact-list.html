@@ -1,0 +1,15 @@
+<div class="col-xs-6 col-sm-3" >
+  <form role="form" class="form-horizontal">
+    <div class="form-group">
+      <input type="text" id="contactSearch" ng-model="data.searchText" class="form-control" placeholder="Search" />
+    </div>
+  </form>
+</div>
+
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+  <div class="list-group">
+    <a ng-repeat="(id, c) in contacts | filterObject:'fn':data.searchText"
+       ng-class="{active: c.id == data.selected}"
+       href="#/c/{{ c.id }}" class="list-group-item">{{ c.fn }}</a>
+  </div>
+</div>

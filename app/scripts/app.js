@@ -6,7 +6,8 @@ angular.module('dogtalkApp', [
   'dogtalkApp.services.contacts',
   'dogtalkApp.services.accounts',
   'dogtalkApp.services.messages',
-  'dogtalkApp.directives.recentConversations'
+  'dogtalkApp.directives.recentConversations',
+  'dogtalkApp.directives.topContactList'
 ]).
 
 
@@ -64,21 +65,31 @@ function ($routeProvider) {
 
 
     /*
+     * chat routes
+     */
+    .when('/c/:contactId', {
+      templateUrl: 'views/chat.html',
+      controller: 'ChatCtrl',
+      resolve: {
+        contact: ['ContactLoader', function (ContactLoader) {
+          return ContactLoader();
+        }],
+        messages: ['MultipleMessageLoader', function (MultipleMessageLoader) {
+          return MultipleMessageLoader();
+        }],
+        accounts: ['MultipleAccountLoader', function (MultipleAccountLoader) {
+          return MultipleAccountLoader();
+        }]
+      }
+    })
+
+
+    /*
      * settings routes
      */
     .when('/settings', {
       templateUrl: 'views/settings.html',
       controller: 'SettingsCtrl'
-    })
-
-
-
-    /*
-     * chat routes
-     */
-    .when('/c/:contactId', {
-      templateUrl: 'views/chat.html',
-      controller: 'ChatCtrl'
     })
 
 

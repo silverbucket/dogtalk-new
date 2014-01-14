@@ -23,7 +23,7 @@ factory('Account', ['RS', '$q', 'AccountData',
 function (RS, $q, AccountData) {
   return {
     get: function (id) {
-      return RS.call('accounts', 'get' [id]);
+      return RS.call('accounts', 'get', [id]);
     },
     save: function (data) {
       return RS.call('accounts', 'save', [data]);

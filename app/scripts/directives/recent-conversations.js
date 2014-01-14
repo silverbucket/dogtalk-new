@@ -10,6 +10,6 @@ function ($rootScope) {
       messages: '=',
       data: '='
     },
-    templateUrl: '/views/recent-conversations.html'
+    templateUrl: 'views/recent-conversations.html'
   };
 }]);
