@@ -27,9 +27,19 @@ body { padding-top: 70px !important; }
 .chat-title {
   display: block;
   border-bottom: 2px solid #dedede;
+  padding: 0 !important;
   padding-bottom: 5px;
   margin-bottom: 5px;
 }
-.chat-title h2 {
-  padding: 0px !important;
+.chat-title h3 {
+  padding: 0 !important;
 }
+
+.chat-input {
+  position: fixed;
+  bottom: 5%;
+  right: 3%;
+  left: 3%;
+  display: block;
+}
+
