@@ -1,12 +1,15 @@
 <div class="container">
-  <div class="row row-offcanvas row-offcanvas-right">
+  <div class="row row-offcanvas row-offcanvas-left">
+
+    <div top-contact-list contacts="contacts" data="data"></div>
+
     <div class="col-xs-12 col-sm-9">
-      <p class="pull-right visible-xs">
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+      <p class="pull-left visible-xs">
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Contacts</button>
       </p>
+
       <div recent-conversations contacts="contacts" messages="messages" data="data"></div>
     </div><!--/span-->
 
-    <div top-contact-list contacts="contacts" data="data"></div>
   </div><!--/row-->
 </div><!--/.container-->

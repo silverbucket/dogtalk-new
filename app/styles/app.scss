@@ -22,6 +22,21 @@ body {
   position: fixed !important;
   top: 3px !important;
 }
+
+.container {
+  padding: 0px !important;
+  margin: 0 2% 0 2%;
+}
+.contact-sidebar {
+  padding-top: 5px;
+}
+.top-contact-list {
+  margin-top: 30px;
+}
+.search-bar {
+  width: 85%;
+  margin-left: 7%;
+}
 .filter-box {
   padding-left:0;
   padding-right: 0;
@@ -29,6 +44,9 @@ body {
 }
 .from-me {
   background-color: #aaeeee;
+}
+.chat-box {
+  padding: 0 !important;
 }
 .chat-title {
   display: block;
@@ -38,19 +56,34 @@ body {
   margin-bottom: 5px;
 }
 .chat-title h3 {
-  padding: 0 !important;
+  padding: 0 0 0 25px !important;
   margin: 0 !important;
-  float: right;
 }
+.message-entry blockquote {
+  padding: 5px 0 0 5px;
+}
+.message-entry blockquote p {
+  line-height: 1;
+  font-size: 15px;
+}
+
 .chat-input {
   position: fixed;
-  bottom: 5%;
-  right: 3%;
-  left: 3%;
-  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #efeeef;
+  padding: 0 0 0 25%!important;
+  min-width: 260px;
+  text-align: center;
 }
-.top-contact-list {
-  margin-top: 30px;
+.chat-input-message {
+  width: 77%;
+  float: left;
+}
+.chat-submit-message {
+  display: block;
+  margin-right: 5%;
 }
 
 footer {
@@ -73,6 +106,21 @@ footer {
     width: 80%;
     margin-left: 7%;
     left: -50%; /* 6 columns */
+  }
+
+  .chat-title h3 {
+    padding: 25px;
+  }
+  .chat-input {
+    padding: 0 0 0 0 !important;
+    min-width: 300px;
+  }
+  .chat-submit-message {
+    float: right;
+    margin-right: 0;
+  }
+  .chat-input-message {
+    margin: 0 auto 0 3%;
   }
 
   .row-offcanvas-right

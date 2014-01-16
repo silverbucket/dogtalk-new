@@ -1,35 +1,43 @@
 <div class="container">
-  <div class="row row-offcanvas row-offcanvas-right">
-    <div class="col-xs-12 col-sm-9">
-      <p class="pull-right visible-xs">
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Contacts</button>
-      </p>
-
-      <div class="row chat-title">
-        <h3>{{ contact.fn }}</h3>
-      </div>
-
-
-      <div ng-repeat="m in messages" class="row">
-        <blockquote ng-class="{'from-me': isMe(m.from)}">
-          <p>{{m.text}}</p>
-          <small ng-class="{'pull-right': !isMe(m.from)}">{{m.from}}</small>
-        </blockquote>
-      </div>
-
-      <div class="chat-input col-sm-12 col-xs-14">
-        <form role="form">
-          <div class="form-group col-sm-9 col-xs-12">
-            <label class="sr-only" for="chatInput">Message</label>
-            <input name="chatInput" class="form-control input-lg" type="text" placeholder="Enter message" focus/>
-          </div>
-          <div class="form-group col-sm-3 col-xs-2">
-            <button type="submit" class="btn btn-default">Send</button>
-          </div>
-        </form>
-      </div>
-    </div>
+  <div class="row row-offcanvas row-offcanvas-left">
 
     <div top-contact-list contacts="contacts" data="data"></div>
+
+    <div class="col-xs-12 col-sm-9">
+
+      <div class="chat-box">
+        <div class="chat-title">
+          <p class="pull-left visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Contacts</button>
+          </p>
+
+          <h3>{{ contact.fn }}</h3>
+        </div>
+
+        <div ng-repeat="m in messages" class="row message-entry">
+          <blockquote ng-class="{'from-me': isMe(m.from)}">
+            <p>{{m.text}}</p>
+            <small ng-class="{'pull-right': !isMe(m.from)}">{{m.from}}</small>
+          </blockquote>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row row-offcanvas row-offcanvas-left">
+    <div class="chat-input col-sm-12 col-xs-18">
+      <form role="form">
+        <div class="chat-input-message">
+          <label class="sr-only" for="chatInput">Message</label>
+          <input name="chatInput" class="form-control" type="text" placeholder="Enter message" focus/>
+        </div>
+        <div class="chat-submit-message">
+          <button type="submit" class="btn btn-default">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   </div><!--/row-->
 </div><!--/container-->
