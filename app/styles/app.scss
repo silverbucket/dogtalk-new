@@ -2,6 +2,9 @@ html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
+html {
+  overflow-y: scroll; /* Prevent scroll on narrow devices */
+}
 body {
   padding-top: 70px !important;
 }
@@ -27,9 +30,14 @@ body {
   padding: 0px !important;
   margin: 0 2% 0 2%;
 }
+.opposite-sidebar {
+  /*margin-left: 27%;*/
+}
 .contact-sidebar {
+/*  position: fixed;*/
   padding-top: 5px;
 }
+
 .top-contact-list {
   margin-top: 30px;
 }
@@ -43,10 +51,14 @@ body {
   padding-top: 0;
 }
 .from-me {
-  background-color: #aaeeee;
+  background-color: #ccffff;
+  margin-top: 3px;
 }
 .chat-box {
-  padding: 0 !important;
+  padding: 0 20px 0 5px !important;
+  overflow-x: none;
+  overflow-y: none;
+  margin-bottom: 50px;
 }
 .chat-title {
   display: block;
@@ -60,11 +72,16 @@ body {
   margin: 0 !important;
 }
 .message-entry blockquote {
-  padding: 5px 0 0 5px;
+  padding: 5px 0 4px 10px;
+  margin: 0 0 0 0;
 }
 .message-entry blockquote p {
   line-height: 1;
   font-size: 15px;
+}
+.message-entry small {
+  margin-top: -10px;
+  padding-bottom: 3px;
 }
 
 .chat-input {
@@ -72,7 +89,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #efeeef;
+  background-color: #feeefe;
   padding: 0 0 0 25%!important;
   min-width: 260px;
   text-align: center;
@@ -89,6 +106,8 @@ body {
 footer {
   padding: 30px 0;
 }
+
+
 
 /*
  * Off Canvas
@@ -107,7 +126,9 @@ footer {
     margin-left: 7%;
     left: -50%; /* 6 columns */
   }
-
+  /*.opposite-sidebar {
+    margin-left: 0;
+  }*/
   .chat-title h3 {
     padding: 25px;
   }

@@ -3,7 +3,7 @@
 
     <div top-contact-list contacts="contacts" data="data"></div>
 
-    <div class="col-xs-12 col-sm-9">
+    <div class="col-xs-12 col-sm-9 opposite-sidebar">
 
       <div class="chat-box">
         <div class="chat-title">
@@ -14,7 +14,7 @@
           <h3>{{ contact.fn }}</h3>
         </div>
 
-        <div ng-repeat="m in messages" class="row message-entry">
+        <div ng-repeat="m in messages" class="message-entry">
           <blockquote ng-class="{'from-me': isMe(m.from)}">
             <p>{{m.text}}</p>
             <small ng-class="{'pull-right': !isMe(m.from)}">{{m.from}}</small>
