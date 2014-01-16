@@ -23,10 +23,25 @@ function (RScfg) {
   ];
 }]).
 
+run([function () {
+  // TODO
+  // this should be executed when we know the appropriate dom elements are
+  // loaded.
+  // right now if someone *starts* on the settings page, this will be executed
+  // and wont bind to anything as the contacts view was not registered.
+  setTimeout(function () {
+    $(document).ready(function() {
+      $('[data-toggle=offcanvas]').click(function() {
+        $('.row-offcanvas').toggleClass('active');
+      });
+    });
+  }, 1000);
+}]).
 
 config(['$routeProvider',
 function ($routeProvider) {
   $routeProvider
+
     .when('/', {
       templateUrl: 'views/dash.html',
       controller: 'DashCtrl',
