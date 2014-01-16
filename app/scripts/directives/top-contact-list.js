@@ -65,6 +65,9 @@ function ($rootScope) {
         keyboardManager.bind('ctrl+enter', function() {
           $location.path('/c/' + $scope.data.selected);
         });
+        keyboardManager.bind('ctrl+right', function() {
+          $location.path('/c/' + $scope.data.selected);
+        });
         keyboardManager.bind('ctrl+left', function() {
           $location.path('/dash');
         });
