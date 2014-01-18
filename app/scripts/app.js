@@ -3,6 +3,8 @@
 angular.module('dogtalkApp', [
   'ngRoute',
   'ngRemoteStorage',
+  'ngSockethubClient',
+  'ngSockethubRemoteStorage',
   'dogtalkApp.services.contacts',
   'dogtalkApp.services.accounts',
   'dogtalkApp.services.messages',
@@ -21,6 +23,24 @@ function (RScfg) {
     ['contacts', 'rw', {'cache': true, 'public': false}],
     ['messages', 'rw', {'cache': true, 'public': false}]
   ];
+}]).
+
+/**
+ * get sockethub settings and try to connect
+ */
+run(['SockethubBootstrap',
+function (SockethubBootstrap) {
+  SockethubBootstrap.run('dogfeed', {
+    // default connection settings, if none found in remoteStorage
+    host: 'localhost',
+    port: '10550',
+    path: '/sockethub',
+    tls: false,
+    secret: '1234567890'
+  },
+  {
+    logo: 'images/sockethub-logo.svg'
+  });
 }]).
 
 run([function () {
@@ -108,6 +128,13 @@ function ($routeProvider) {
     .when('/settings', {
       templateUrl: 'views/settings.html',
       controller: 'SettingsCtrl'
+    })
+
+    /*
+     * sockethub settings routes
+     */
+    .when('/settings/sockethub', {
+      templateUrl: 'views/settings-sockethub.html'
     })
 
 
