@@ -164,7 +164,7 @@ footer {
     left: 0;
   }
   .opposite-sidebar.active {
-    left: 50%;
+    left: 60%;
   }
 
   .chat-title h3 {
@@ -181,23 +181,6 @@ footer {
   .chat-input-message {
     margin: 0 auto 0 3%;
   }
-
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -50%; /* 6 columns */
-  }
-  .row-offcanvas-right.active {
-    right: 50%; /* 6 columns */
-  }
-
-
- /* .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -50%;
-  }
-  .row-offcanvas-left.active {
-    left: 50%;
-  }*/
 
   .sidebar-offcanvas {
     position: absolute;
