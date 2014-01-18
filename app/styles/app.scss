@@ -6,7 +6,7 @@ html {
   overflow-y: scroll; /* Prevent scroll on narrow devices */
 }
 body {
-  padding-top: 70px !important;
+  padding-top: 75px !important;
 }
 
 .navbar-brand {
@@ -25,6 +25,23 @@ body {
   position: fixed !important;
   top: 3px !important;
 }
+.message-container {
+  padding: 0 !important;
+  display: block;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 100;
+  div {
+    padding: 0 !important;
+  }
+}
+
 
 .container {
   padding: 0px !important;

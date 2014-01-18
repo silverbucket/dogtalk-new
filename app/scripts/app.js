@@ -5,6 +5,7 @@ angular.module('dogtalkApp', [
   'ngRemoteStorage',
   'ngSockethubClient',
   'ngSockethubRemoteStorage',
+  'ngMessages',
   'dogtalkApp.services.contacts',
   'dogtalkApp.services.accounts',
   'dogtalkApp.services.messages',
