@@ -9,6 +9,9 @@
   <div class="list-group top-contact-list">
     <a ng-repeat="(id, c) in contacts | filterObject:'fn':data.searchText"
        ng-class="{active: c.id == data.selected}"
-       href="#/c/{{ c.id }}" class="list-group-item">{{ c.fn }}</a>
+       href="#/c/{{ c.id }}" class="list-group-item">
+      <span class="badge pull-right">42</span>
+      {{ c.fn }}
+    </a>
   </div>
 </div>
