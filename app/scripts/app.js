@@ -53,7 +53,7 @@ run([function () {
   setTimeout(function () {
     $(document).ready(function() {
       $('[data-toggle=offcanvas]').click(function() {
-        $('.row-offcanvas').toggleClass('active');
+        $('.opposite-sidebar').toggleClass('active');
       });
     });
   }, 1000);
@@ -136,6 +136,13 @@ function ($routeProvider) {
      */
     .when('/settings/sockethub', {
       templateUrl: 'views/settings-sockethub.html'
+    })
+
+    /*
+     * sockethub settings routes
+     */
+    .when('/test', {
+      templateUrl: 'views/test2.html'
     })
 
 
