@@ -21,18 +21,118 @@
       description: 'can be small (entry in the chat log) or big (email with CC\'s attachments)',
       key: 'timestamp',
       properties: {
-        from: { type: 'useraddress', description: 'the sender', required: true },
-        to: { type: 'useraddress or [useraddress]', description: 'the recipients. apart from mailto:, we invent mailcc:, mailbcc: to express CC\'s and BCC\'s', required: true },
-        text: { type: 'utf-8 string', description: 'human-readable message', required: true },
-        previous: { type: 'map',
-          properties: {
-            key: 'useraddress',
-            type: 'timestamp',
-            description: 'Previous message involving that contact'
+        'actor': {
+          'type': 'object',
+          'required': true,
+          'properties': {
+            'name': {
+              'type': 'string',
+              'required': false
+            },
+            'address': {
+              'type': 'string',
+              'required': true,
+              'pattern': '^[a-zA-Z0-9]+'
+            }
+          }
+        },
+        'target': {
+          'type': 'array',
+          'required': true,
+          'items': {
+            'type': 'object',
+            'properties': {
+              'name': {
+                'type': 'string',
+                'required': false
+              },
+              'address': {
+                'type': 'string',
+                'required': false
+              },
+              'field': {
+                'type': 'string',
+                'description': 'cc, bcc, to, etc.',
+                'required': false
+              },
+              'platform': {
+                'type': 'string',
+                'description': 'type of protocol used, xmpp, irc, email, etc.',
+                'required': false
+              }
+            }
+          }
+        },
+        'object': {
+          'type': 'object',
+          'required': true,
+          'properties': {
+            'headers': {
+              'type': 'object',
+              'required': false
+            },
+            'subject': {
+              'type': 'string',
+              'required': false
+            },
+            'text': {
+              'type': 'string',
+              'description': 'human-readable message',
+              'required': false
+            },
+            'html': {
+              'type': 'string',
+              'description': 'html formatted message',
+              'required': false
+            },
+            'timestamp': {
+              'type': 'timestamp',
+              'required': false
+            },
+            'attachments': {
+              'type': 'array',
+              'required': false,
+              'items': {
+                'type': 'object',
+                'properties': {
+                  'fileName': {
+                    'type': 'string',
+                    'required': true
+                  },
+                  'cid': {
+                    'type': 'string',
+                    'required': false
+                  },
+                  'contents': {
+                    'type': 'string',
+                    'required': false
+                  },
+                  'filePath': {
+                    'type': 'string',
+                    'required': false
+                  },
+                  'contentType': {
+                    'type': 'string',
+                    'required': false
+                  }
+                }
+              }
+            }
           }
         }
       }
     });
+
+    //     text: { type: 'utf-8 string', description: 'human-readable message', required: true },
+    //     previous: { type: 'map',
+    //       properties: {
+    //         key: 'useraddress',
+    //         type: 'timestamp',
+    //         description: 'Previous message involving that contact'
+    //       }
+    //     }
+    //   }
+    // });
 
     privateClient.declareType('last-message', {
       description: 'pointer from a contact to the last message involving that contact',
