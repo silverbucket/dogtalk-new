@@ -7,236 +7,254 @@ angular.module('dogtalkApp.services.messages', [
 ]).
 
 value('MessageData', {
-  messages: [
-    {
-      'timestamp': 12345678908,
-      'from': 'rmsw',
-      'to': 'lilac',
-      'text': 'yarg!',
+  messages: {},
+  dummy: {
+    'lilac': {
+      '123456789098': {
+        'actor': {address:'rmsw'},
+        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'platform': 'irc',
+        'object': {
+          'text': 'yarg!',
+          'timestamp': 12345678908,
+        }
+      },
+      '123456789097': {
+        'actor': {address:'bob'},
+        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'platform': 'irc',
+        'object': {
+          'text': 'HEY THERE!',
+          'timestamp': 12345678908
+        }
+      },
+      '123456789096': {
+        'actor': {address:'rmsw'},
+        'target': [{address:'bob'}],
+        'platform': 'irc',
+        'object': {
+          'text': 'ssssh!',
+          'timestamp': 123456789081
+        }
+      },
+      '123456789095': {
+        'actor': {address:'bob'},
+        'platform': 'irc',
+        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'object': {
+          'text': 'howre you?!',
+          'timestamp': 12345678909
+        }
+      },
+      '123456789094': {
+        'actor': {address:'lilac'},
+        'target': [{address:'bob'}],
+        'platform': 'irc',
+        'object': {
+          'text': 'fine',
+          'timestamp': 12345678908
+        }
+      },
+      '123456789093': {
+        'actor': {address:'lilac'},
+        'target': [{address:'rmsw'}],
+        'platform': 'irc',
+        'object': {
+          'text': ':P',
+          'timestamp': 12345678908
+        }
+      },
+      '123456789092': {
+        'actor': {address:'rmsw'},
+        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'platform': 'irc',
+        'object': {
+          'text': ':D',
+          'timestamp': 1234567801
+        }
+      },
+      '123456789091': {
+        'actor': {address:'jiridog@hotmail.com'},
+        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'platform': 'irc',
+        'object': {
+          'text': 'watermelon 100% for real',
+          'timestamp': 12345678908
+        }
+      }
     },
-    {
-      'timestamp': 12345678901,
-      'from': 'bobby@bobbymcferrin.com',
-      'to': 'lilac@hotmail.com',
-      'text': 'foo bar says baz bot',
-    },
-    {
-      'timestamp': 12345678901,
-      'from': 'lilac@hotmail.com',
-      'to': 'bobby@bobbymcferrin.com',
-      'text': 'thats right, i forgot about that, thanks for reminding me.',
-    },
-    {
-      'timestamp': 12345678905,
-      'from': 'bobby@bobbymcferrin.com',
-      'to': 'lilac@hotmail.com',
-      'text': 'holla! hey! asfd sd sd ds dssldskjrslsekj selesls 3 lsflslselssf  se s 3 3s se fe fse fselselsefkjlskdjf vvdsvd sd sd slsdfljgs ew e slsflfsdkjse  s sflsdlkeskeskfs sdf sese fs sf.',
-    },
-    {
-      'timestamp': 12345678903,
-      'from': 'bobby@bobbymcferrin.com',
-      'to': 'lilac@hotmail.com',
-      'text': 'lorem ipsum stuff n heimer',
-    },
-    {
-      'timestamp': 12345678900,
-      'from': 'bobby@bobbymcferrin.com',
-      'to': 'lilac@hotmail.com',
-      'text': 'asdf asd asff asfasf',
-    },
-    {
-      'timestamp': 12345678908,
-      'from': 'bob',
-      'to': 'lilac',
-      'text': 'HEY THERE!',
-    },
-    {
-      'timestamp': 123456789081,
-      'from': 'rmsw',
-      'to': 'bob',
-      'text': 'ssssh!',
-    },
-    {
-      'timestamp': 12345678909,
-      'from': 'bob',
-      'to': 'lilac',
-      'text': 'howre you?!',
-    },
-    {
-      'timestamp': 12345678908,
-      'from': 'lilac',
-      'to': 'bob',
-      'text': 'fine',
-    },
-    {
-      'timestamp': 12345678908,
-      'from': 'lilac',
-      'to': 'rmsw',
-      'text': ':P',
-    },
-    {
-      'timestamp': 12345678908,
-      'from': 'rmsw',
-      'to': 'lilac',
-      'text': ':D',
-    },
-    {
-      'timestamp': 12345678908,
-      'from': 'jiridog@hotmail.com',
-      'to': 'lilac',
-      'text': 'watermelon 100% for real',
-    },
-    {
-      'timestamp': 12345678918,
-      'from': 'jnovak@killstupids.com',
-      'to': 'rmsw@example.in',
-      'text': 'Mr. Watermelon will arrive at 100%',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12345678908,
-      'from': 'rmsw@example.in',
-      'to': 'jnovak@killstupids.com',
-      'text': 'acceptable!',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
-    },
-    {
-      'timestamp': 12344678908,
-      'from': 'lilac@hotmail.com',
-      'to': 'jiridog@hotmail.com',
-      'text': 'true dat',
+    'lilac@hotmail.com': {
+      '1234567890211': {
+        'actor': {address: 'bobby@bobbymcferrin.com'},
+        'target': [{name: 'Lilac Johnston', address: 'lilac@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'text': 'foo bar says baz bot',
+          'timestamp': 12345678901
+        }
+      },
+      '1234567890210': {
+        'actor': {name: 'Lilac Johnston', address: 'lilac@hotmail.com'},
+        'target': [{address: 'bobby@bobbymcferrin.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12345678901,
+          'text': 'thats right, i forgot about that, thanks for reminding me.'
+        }
+      },
+      '1234567890127': {
+        'actor': {address: 'bobby@bobbymcferrin.com'},
+        'target': [{name: 'Lilac Johnston', address: 'lilac@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'text': 'holla! hey! asfd sd sd ds dssldskjrslsekj selesls 3 lsflslselssf  se s 3 3s se fe fse fselselsefkjlskdjf vvdsvd sd sd slsdfljgs ew e slsflfsdkjse  s sflsdlkeskeskfs sdf sese fs sf.',
+          'timestamp': 12345678905
+        }
+      },
+      '1234567890126': {
+        'actor': {address: 'bobby@bobbymcferrin.com'},
+        'target': [{name: 'Lilac Johnston', address: 'lilac@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'text': 'lorem ipsum stuff n heimer',
+          'timestamp': 12345678903
+        }
+      },
+      '1234567890125': {
+        'actor': {address: 'bobby@bobbymcferrin.com'},
+        'target': [{name: 'Lilac Johnston', address: 'lilac@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'text': 'asdf asd asff asfasf',
+          'timestamp': 12345678900
+        }
+      },
+      '1234567890124': {
+        'actor': {address:'rmsw@example.in'},
+        'target': [{address:'jnovak@killstupids.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'text': 'lalala!',
+          'timestamp': 12345678908
+        }
+      },
+      '1234567890123': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address:'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12344678908,
+          'text': 'lorem ipsum'
+        }
+      },
+      '1234567890122': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address:'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12344678908,
+          'text': 'lorem ipsum'
+        }
+      },
+      '1234567890121': {
+        'actor': {address: 'jiridog@hotmail.com'},
+        'target': [{address:'lilac@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12344678908,
+          'text': 'blah'
+        }
+      },
+      '1234567890120': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address: 'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12344678908,
+          'text': 'yarg'
+        }
+      },
+      '1234567890119': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address: 'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12344678908,
+          'text': 'lorem ipsum'
+        }
+      },
+      '1234567890118': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address: 'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12344678908,
+          'text': 'lorem ipsum'
+        }
+      },
+      '1234567890117': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address: 'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12344678908,
+          'text': 'lorem ipsum'
+        }
+      },
+      '1234567890116': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address: 'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12344678908,
+          'text': 'lorem ipsum'
+        }
+      },
+      '1234567890115': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address: 'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+      },
+      '1234567890114': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address: 'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'text': 'lorem ipsum',
+          'timestamp': 12344678908,
+        }
+      },
+      '1234567890113': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address: 'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'text': 'lorem ipsum',
+          'timestamp': 12344678908
+        }
+      },
+      '1234567890112': {
+        'actor': {address:'lilac@hotmail.com'},
+        'target': [{address: 'jiridog@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'text': 'lorem ipsum',
+          'timestamp': 12344678908
+        }
+      }
     }
-  ]
+  }
 }).
 
 factory('Message', ['RS', '$q', 'MessageData', '$route', 'ContactLoader', 'MultipleAccountLoader',
 function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
 
-  function __filter (messages) {
+  function __filter (accounts) {
     var defer = $q.defer();
     var m = [];
+
     if ($route.current.params.contactId) {
-      var accounts;
-      MultipleAccountLoader().then(function (a) {
-        // users accounts
-        accounts = [];
-        for (var i = a.length -1; i >= 0; i--) {
-          accounts.push(a[i].user);
-        }
-        return ContactLoader();
-      }).then(function (contact) {
+      ContactLoader().then(function (contact) {
         // targets list of IDs
         var tmp = contact.email.concat(contact.impp);
         var chatIDs = [];
@@ -245,17 +263,39 @@ function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
         }
 
         for (i = messages.length -1; i >= 0; i--) {
-          if ((chatIDs.indexOf(messages[i].from) > -1) ||
-              ((chatIDs.indexOf(messages[i].to) > -1) &&
-               (accounts.indexOf(messages[i].from) > -1))) {
-            m.push(messages[i]);
+          if ((chatIDs.indexOf(MessageData.messages[i].from) > -1) ||
+              ((chatIDs.indexOf(MessageData.messages[i].to) > -1) &&
+               (accounts.indexOf(MessageData.messages[i].from) > -1))) {
+            m.push(MessageData.messages[i]);
           }
         }
         defer.resolve(m);
       });
     } else {
-      defer.resolve(messages);
+      // no account specified, return all messages
+      defer.resolve(MessageData.messages);
     }
+    return defer.promise;
+  }
+
+  function getMessagesForAccount(account, refresh) {
+    var defer = $q.defer();
+
+    if ((refresh) ||
+        (typeof MessageData.messages[account] === 'undefined') ||
+        (Object.keys(MessageData.messages[account]).length === 0)) {
+
+      RS.call('messages', 'account', [account.name]).then(function (messages) {
+        for (var i = messages.length - 1; i >= 0; i--) {
+          MessageData.messages[account][messages[i].messageId] = messages[i];
+        }
+        defer.resolve();
+      }, defer.reject);
+
+    } else {
+      defer.resolve();
+    }
+
     return defer.promise;
   }
 
@@ -268,18 +308,16 @@ function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
     },
     query: function (refresh) {
       var defer = $q.defer();
-      if (refresh) {
-        RS.call('messages', 'getAll', ['']).then(function (messages) {
-          MessageData.messages = messages;
-          return __filter(messages);
-        }).then(function (m) {
-          defer.resolve(m);
-        }, defer.reject);
-      } else {
-        __filter(MessageData.messages).then(function (m) {
-          defer.resolve(m);
-        });
-      }
+
+      MultipleAccountLoader().then(function (accounts) {
+        for (var i = accounts.length - 1; i >= 0; i--) {
+          // open the account message group
+          getMessagesForAccount(accounts[i], refresh).then(function () {
+            defer.resolve(MessageData.messages);
+          });
+        }
+      });
+
       return defer.promise;
     },
     remove: function (id) {

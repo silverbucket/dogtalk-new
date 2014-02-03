@@ -5,40 +5,60 @@ angular.module('dogtalkApp.services.accounts', ['ngRemoteStorage']).
 value('AccountData', {
   accounts: [
     {
-      'user': 'lilac',
+      'name': 'irc:lilac',
+      'username': 'lilac',
       'host': 'irc.freenode.net',
       'port': 6689,
-      'type': 'irc'
+      'type': 'irc',
+      'enabled': true
     },
     {
-      'user': 'lilac@hotmail.com',
+      'name': 'xmpp:lilac@hotmail.com',
+      'username': 'lilac@hotmail.com',
       'host': 'hotmail.com',
+      'resource': 'Home',
+      'password': 'password123',
       'port': 1234,
-      'type': 'xmpp'
+      'type': 'xmpp',
+      'enabled': true
     }
-  ]
+  ],
+  messageHandlers: {} // remotestorage objects for accessing specific message
+                      // groups for an account
 }).
 
 factory('Account', ['RS', '$q', 'AccountData',
 function (RS, $q, AccountData) {
   return {
-    get: function (id) {
-      return RS.call('accounts', 'get', [id]);
+    get: function (platform, name) {
+      return RS.call('messages', 'getAcount', [platform, name]);
     },
-    save: function (data) {
-      return RS.call('accounts', 'save', [data]);
+    save: function (platform, name, data) {
+      return RS.call('messages', 'setAccount', [platform, name, data]).then(function () {
+        return RS.call('messages', 'openMessages', [data.name]);
+      }).then(function (messageHandler) {
+        AccountData.messageHandlers[data.name] = messageHandler;
+      });
     },
-    query: function (refresh) {
+    query: function (platform, refresh) {
       if (refresh) {
-        return RS.call('accounts', 'getAll', ['']);
+        if (platform) {
+          return RS.call('messages', 'getAccounts', ['']);
+        } else {
+          return RS.call('messages', 'getAccounts', [platform]);
+        }
       } else {
         var defer = $q.defer();
-        defer.resolve(AccountData.accounts);
+        if ((platform) && (AccountData.accounts.platform)) {
+          defer.resolve(AccountData.accounts.platform);
+        } else {
+          defer.resolve(AccountData.accounts);
+        }
         return defer.promise;
       }
     },
     remove: function (id) {
-      return RS.call('accounts', 'remove', [id]);
+      return RS.call('messages', 'remove', [id]);
     }
   };
 }]).

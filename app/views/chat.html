@@ -10,9 +10,9 @@
         </div>
 
         <div ng-repeat="m in messages" class="message-entry">
-          <blockquote ng-class="{'from-me': isMe(m.from)}">
+          <blockquote ng-class="{'from-me': isMe(m.actor.address)}">
             <p>{{m.text}}</p>
-            <small ng-class="{'pull-right': !isMe(m.from)}">{{m.from}}</small>
+            <small ng-class="{'pull-right': !isMe(m.actor.address)}">{{m.actor.address}}</small>
           </blockquote>
         </div>
       </div>
