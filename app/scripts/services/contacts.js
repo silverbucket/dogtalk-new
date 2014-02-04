@@ -95,6 +95,10 @@ value('ContactData', {
         {
           'type': 'xmpp',
           'value': 'jnovak@killstupids.com'
+        },
+        {
+          'type': 'irc',
+          'value': 'jiridog'
         }
       ]
     },

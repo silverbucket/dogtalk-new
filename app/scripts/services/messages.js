@@ -8,8 +8,13 @@ angular.module('dogtalkApp.services.messages', [
 
 value('MessageData', {
   messages: {},
+  // TODO
+  // handle IRC rooms correctly
+  // - targets would be rooms, not people
+  // - param wouldn't be contactId anymore, but room/group identifier
+  // - chat controller must properly account for and filter these messages
   dummy: {
-    'lilac': {
+    'irc:lilac': {
       '123456789098': {
         'actor': {address:'rmsw'},
         'target': [{name: 'Lilac Johnston', address: 'lilac'}],
@@ -74,7 +79,7 @@ value('MessageData', {
         }
       },
       '123456789091': {
-        'actor': {address:'jiridog@hotmail.com'},
+        'actor': {address:'jiridog'},
         'target': [{name: 'Lilac Johnston', address: 'lilac'}],
         'platform': 'irc',
         'object': {
@@ -83,7 +88,7 @@ value('MessageData', {
         }
       }
     },
-    'lilac@hotmail.com': {
+    'xmpp:lilac@hotmail.com': {
       '1234567890211': {
         'actor': {address: 'bobby@bobbymcferrin.com'},
         'target': [{name: 'Lilac Johnston', address: 'lilac@hotmail.com'}],
@@ -249,35 +254,6 @@ value('MessageData', {
 factory('Message', ['RS', '$q', 'MessageData', '$route', 'ContactLoader', 'MultipleAccountLoader',
 function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
 
-  function __filter (accounts) {
-    var defer = $q.defer();
-    var m = [];
-
-    if ($route.current.params.contactId) {
-      ContactLoader().then(function (contact) {
-        // targets list of IDs
-        var tmp = contact.email.concat(contact.impp);
-        var chatIDs = [];
-        for (var i = tmp.length -1; i >= 0; i--) {
-          chatIDs.push(tmp[i].value);
-        }
-
-        for (i = messages.length -1; i >= 0; i--) {
-          if ((chatIDs.indexOf(MessageData.messages[i].from) > -1) ||
-              ((chatIDs.indexOf(MessageData.messages[i].to) > -1) &&
-               (accounts.indexOf(MessageData.messages[i].from) > -1))) {
-            m.push(MessageData.messages[i]);
-          }
-        }
-        defer.resolve(m);
-      });
-    } else {
-      // no account specified, return all messages
-      defer.resolve(MessageData.messages);
-    }
-    return defer.promise;
-  }
-
   function getMessagesForAccount(account, refresh) {
     var defer = $q.defer();
 
@@ -285,9 +261,14 @@ function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
         (typeof MessageData.messages[account] === 'undefined') ||
         (Object.keys(MessageData.messages[account]).length === 0)) {
 
-      RS.call('messages', 'account', [account.name]).then(function (messages) {
+      RS.call('messages', 'account', [account]).then(function (messages) {
         for (var i = messages.length - 1; i >= 0; i--) {
           MessageData.messages[account][messages[i].messageId] = messages[i];
+        }
+
+        if ((typeof MessageData.messages[account] === 'undefined') &&
+            (typeof MessageData.dummy[account] !== 'undefined')) {
+          MessageData.messages[account] = MessageData.dummy[account];
         }
         defer.resolve();
       }, defer.reject);
@@ -310,10 +291,15 @@ function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
       var defer = $q.defer();
 
       MultipleAccountLoader().then(function (accounts) {
+        var count = accounts.length - 1;
         for (var i = accounts.length - 1; i >= 0; i--) {
           // open the account message group
-          getMessagesForAccount(accounts[i], refresh).then(function () {
-            defer.resolve(MessageData.messages);
+          getMessagesForAccount(accounts[i].name, refresh).then(function () {
+            if (count === 0) {
+              defer.resolve(MessageData.messages);
+            } else {
+              count = count - 1;
+            }
           });
         }
       });
