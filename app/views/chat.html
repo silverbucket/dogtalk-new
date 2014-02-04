@@ -8,10 +8,9 @@
         <div class="chat-title">
           <h3>{{ contact.fn }}</h3>
         </div>
-
-        <div ng-repeat="m in messages" class="message-entry">
+        <div ng-repeat="m in mergedMessages" class="message-entry">
           <blockquote ng-class="{'from-me': isMe(m.actor.address)}">
-            <p>{{m.text}}</p>
+            <p>{{m.object.text}}</p>
             <small ng-class="{'pull-right': !isMe(m.actor.address)}">{{m.actor.address}}</small>
           </blockquote>
         </div>
