@@ -83,10 +83,7 @@ body {
   padding-right: 0;
   padding-top: 0;
 }
-.from-me {
-  background-color: #ccffff;
-  margin-top: 3px;
-}
+
 .chat-box {
   position: absolute;
   left: 0;
@@ -109,17 +106,19 @@ body {
 }
 .message-entry blockquote {
   padding: 5px 0 4px 10px;
-  margin: 0 0 0 0;
+  margin: 0 0 10px 0 !important;
 }
 .message-entry blockquote p {
   line-height: 1;
   font-size: 15px;
 }
-.message4entry small {
+.message-entry small {
   margin-top: -10px;
-  padding-bottom: 3px;
+  padding: 0 3px 3px 0 !important;
 }
-
+.from-me {
+  background-color: #ccffff;
+}
 .chat-input {
   position: absolute;
   bottom: 0;
