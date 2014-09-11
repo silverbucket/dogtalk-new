@@ -5,7 +5,7 @@ angular.module('dogtalkApp.services.accounts', ['ngRemoteStorage']).
 value('AccountData', {
   accounts: [
     {
-      'name': 'irc:lilac',
+      'name': 'irc:lilac@irc.freenode.net',
       'username': 'lilac',
       'host': 'irc.freenode.net',
       'port': 6689,
@@ -31,7 +31,21 @@ factory('Account', ['RS', '$q', 'AccountData',
 function (RS, $q, AccountData) {
   return {
     get: function (platform, name) {
-      return RS.call('messages', 'getAcount', [platform, name]);
+      var defer = $q.defer();
+      RS.call('messages', 'getAcount', [platform, name]).then(defer.resolve,
+        function () {
+          for (var i = AccountData.length - 1; i >= 0; i--) {
+            if (AccountData.accounts[i].name === name) {
+              defer.resolve(AccountData.accounts[i]);
+              return;
+            }
+          }
+          console.log('ACCOUNT REJECT: ', name);
+          defer.reject();
+          return;
+        }
+      );
+      return defer.promise;
     },
     save: function (platform, name, data) {
       return RS.call('messages', 'setAccount', [platform, name, data]).then(function () {
