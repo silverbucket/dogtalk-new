@@ -4,6 +4,17 @@ angular.module('dogtalkApp.services.contacts', ['ngRemoteStorage']).
 
 value('ContactData', {
   contacts: {
+    '821239': {
+      'id': '821239',
+      'fn': '#dogtalk',
+      'nickname': '#dogtalk',
+      'impp': [
+        {
+          'type': 'irc',
+          'value': 'lilac@irc.freenode.net'
+        }
+      ]
+    },
     '901923': {
       'id': '901923',
       'fn': 'Bob Sagget',
@@ -49,7 +60,7 @@ value('ContactData', {
         },
         {
           'type': 'irc',
-          'value': 'bobsagget'
+          'value': 'bobsagget@irc.freenode.net'
         }
       ]
     },
@@ -98,7 +109,7 @@ value('ContactData', {
         },
         {
           'type': 'irc',
-          'value': 'jiridog'
+          'value': 'jiridog@irc.freenode.net'
         }
       ]
     },
@@ -140,7 +151,7 @@ value('ContactData', {
         },
         {
           'type': 'irc',
-          'value': 'bmf'
+          'value': 'bmf@irc.freenode.net'
         }
       ]
     }
@@ -152,9 +163,11 @@ function (RS, ContactData) {
   RS.on('contacts', 'change', function (data) {
     console.log('CHANGE EVENT: ', data);
   });
-  RS.on('contacts', 'conflict', function (data) {
-    console.log('CONFLICT EVENT: ', data);
-  });
+  // currently broken
+  // https://github.com/remotestorage/remotestorage.js/issues/758
+  // RS.on('contacts', 'conflict', function (data) {
+  //   console.log('CONFLICT EVENT: ', data);
+  // });
 }]).
 
 factory('Contact', ['RS', 'ContactData', '$q',
@@ -168,8 +181,13 @@ function (RS, ContactData, $q) {
         RS.call('contacts', 'get', [id]).then(function (contact) {
           ContactData.contacts[contact.id] = contact;
           defer.resolve(contact);
-        }, function (e) {
-          defer.reject(e);
+        }, function () {
+          if (typeof ContactData.contacts[id] === 'undefined') {
+            console.log('CONTACT REJECT: ', id);
+            defer.reject();
+          } else {
+            defer.resolve(ContactData.contacts[id]);
+          }
         });
       }
       return defer.promise;
