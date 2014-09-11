@@ -20,7 +20,7 @@ angular.module('dogtalkApp', [
 run(['RemoteStorageConfig',
 function (RScfg) {
   RScfg.modules = [
-    ['sockethub', 'rw', {'cache': true, 'public': false}],
+    ['sockethub-credentials', 'rw', {'cache': true, 'public': false}],
     ['contacts', 'rw', {'cache': true, 'public': false}],
     ['messages', 'rw', {'cache': true, 'public': false}]
   ];
