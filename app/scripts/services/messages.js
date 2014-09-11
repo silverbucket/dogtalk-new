@@ -14,10 +14,10 @@ value('MessageData', {
   // - param wouldn't be contactId anymore, but room/group identifier
   // - chat controller must properly account for and filter these messages
   dummy: {
-    'irc:lilac': {
+    'irc:lilac@irc.freenode.net': {
       '123456789098': {
         'actor': {address:'rmsw'},
-        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'target': [{address: '#dogtalk'}],
         'platform': 'irc',
         'object': {
           'text': 'yarg!',
@@ -25,8 +25,8 @@ value('MessageData', {
         }
       },
       '123456789097': {
-        'actor': {address:'bob'},
-        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'actor': { address:'bobsagget' },
+        'target': [{address: '#dogtalk'}],
         'platform': 'irc',
         'object': {
           'text': 'HEY THERE!',
@@ -35,7 +35,7 @@ value('MessageData', {
       },
       '123456789096': {
         'actor': {address:'rmsw'},
-        'target': [{address:'bob'}],
+        'target': [{address:'#dogtalk'}],
         'platform': 'irc',
         'object': {
           'text': 'ssssh!',
@@ -43,9 +43,9 @@ value('MessageData', {
         }
       },
       '123456789095': {
-        'actor': {address:'bob'},
+        'actor': {address:'bobsagget'},
         'platform': 'irc',
-        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'target': [{address: '#dogtalk'}],
         'object': {
           'text': 'howre you?!',
           'timestamp': 12345678909
@@ -53,7 +53,7 @@ value('MessageData', {
       },
       '123456789094': {
         'actor': {address:'lilac'},
-        'target': [{address:'bob'}],
+        'target': [{address:'#dogtalk'}],
         'platform': 'irc',
         'object': {
           'text': 'fine',
@@ -62,7 +62,7 @@ value('MessageData', {
       },
       '123456789093': {
         'actor': {address:'lilac'},
-        'target': [{address:'rmsw'}],
+        'target': [{address:'#dogtalk'}],
         'platform': 'irc',
         'object': {
           'text': ':P',
@@ -71,7 +71,7 @@ value('MessageData', {
       },
       '123456789092': {
         'actor': {address:'rmsw'},
-        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'target': [{address: '#dogtalk'}],
         'platform': 'irc',
         'object': {
           'text': ':D',
@@ -80,7 +80,7 @@ value('MessageData', {
       },
       '123456789091': {
         'actor': {address:'jiridog'},
-        'target': [{name: 'Lilac Johnston', address: 'lilac'}],
+        'target': [{address: '#dogtalk'}],
         'platform': 'irc',
         'object': {
           'text': 'watermelon 100% for real',
@@ -246,13 +246,22 @@ value('MessageData', {
           'text': 'lorem ipsum',
           'timestamp': 12344678908
         }
-      }
+      },
+      '1234567890215': {
+        'actor': {address: 'jiridog@hotmail.com'},
+        'target': [{address:'lilac@hotmail.com'}],
+        'platform': 'xmpp',
+        'object': {
+          'timestamp': 12345678912,
+          'text': 'ok'
+        }
+      },
     }
   }
 }).
 
-factory('Message', ['RS', '$q', 'MessageData', '$route', 'ContactLoader', 'MultipleAccountLoader',
-function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
+factory('Message', ['RS', '$q', 'MessageData', '$route', 'ContactLoader', 'Contact', 'MultipleAccountLoader',
+function (RS, $q, MessageData, $route, ContactLoader, Contact, multipleAccountLoader) {
 
   function getMessagesForAccount(account, refresh) {
     var defer = $q.defer();
@@ -271,7 +280,16 @@ function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
           MessageData.messages[account] = MessageData.dummy[account];
         }
         defer.resolve();
-      }, defer.reject);
+      }, function () {
+        if (typeof MessageData.dummy[account] === 'undefined') {
+          console.log("MESSAGE REJECT: ", account);
+          defer.resolve();
+        } else {
+          console.log("MESSAGES FOR ACCOUNT: ["+ account+"] ", MessageData.dummy[account] );
+          MessageData.messages[account] = MessageData.dummy[account];
+          defer.resolve();
+        }
+      });
 
     } else {
       defer.resolve();
@@ -279,6 +297,25 @@ function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
 
     return defer.promise;
   }
+
+  // function getMessagesForContact(contact, refresh) {
+  //   var defer = $q.defer();
+
+  //   var count = contact.impp.length;
+  //   function _handleResponse() {
+  //     count--;
+  //     if (count === 0) {
+  //       defer.resolve();
+  //     }
+  //   }
+
+  //   for (var i = contact.impp.length - 1; i >= 0; i--) {
+  //     var account = contact.impp[i].type + ':' + contact.impp[i].value;
+  //     getMessagesForAccount(account, refresh).then(_handleResponse);
+  //   }
+
+  //   return defer.promise;
+  // }
 
   return {
     get: function (id) {
@@ -290,17 +327,20 @@ function (RS, $q, MessageData, $route, ContactLoader, MultipleAccountLoader) {
     query: function (refresh) {
       var defer = $q.defer();
 
-      MultipleAccountLoader().then(function (accounts) {
-        var count = accounts.length - 1;
+      var count = 0;
+      function _handleResponse() {
+        if (count === 0) {
+          defer.resolve(MessageData.messages);
+        } else {
+          count--;
+        }
+      }
+
+      multipleAccountLoader().then(function (accounts) {
+        count = accounts.length - 1;
         for (var i = accounts.length - 1; i >= 0; i--) {
           // open the account message group
-          getMessagesForAccount(accounts[i].name, refresh).then(function () {
-            if (count === 0) {
-              defer.resolve(MessageData.messages);
-            } else {
-              count = count - 1;
-            }
-          });
+          getMessagesForAccount(accounts[i].name, refresh).then(_handleResponse);
         }
       });
 
